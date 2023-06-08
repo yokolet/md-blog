@@ -92,8 +92,40 @@ class Comment < ApplicationRecord
 end
 ```
 
+### Create Model Specs
+
+#### generate specs
+```bash
+% rails g rspec:model user
+% rails g rspec:model post
+% rails g rspec:model comment
+```
+
+At this point, `bundle exec rspec` command should work and report three pending results.
+If not, something of settings are not going well. Fix that.
+
+#### define factories
+```bash
+% rails g factory_bot:model user
+% rails g factory_bot:model post
+% rails g factory_bot:model comment
+```
+
+**IMPORTANT**\
+Verify Gemfile. The order matters. The factory_bot_rails gem should come after rspec-rails gem.
+Unless, the factory_bot generator creates under test, not spec directory.
+
+
+#### Run Rspec
+```bash
+% bundle exec rspec
+```
+
 - References
   - [The Rails Command Line](https://guides.rubyonrails.org/command_line.html)
   - [Active Record Migrations](https://guides.rubyonrails.org/active_record_migrations.html)
   - [Rails Generator Cheatsheet](https://dev.to/alicannklc/rails-generator-cheatsheet-1dfn)
   - [Don't forget: Automatically remove join records on has_many :through associations](https://makandracards.com/makandra/32175-don-t-forget-automatically-remove-join-records-on-has_many-through-associations)
+  - [Factory Bot cheatsheet](https://devhints.io/factory_bot)
+  - [Shoulda Matchers](https://matchers.shoulda.io/)
+  - [How to Test Rails Models with RSpec](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
