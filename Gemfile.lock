@@ -93,6 +93,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    graphql (2.0.22)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -221,6 +222,7 @@ DEPENDENCIES
   debug
   factory_bot_rails
   faker
+  graphql (~> 2.0)
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
