@@ -92,6 +92,36 @@ class Comment < ApplicationRecord
 end
 ```
 
+#### Update Foreign Key Constraint
+
+PostgreSQL complains when a parent model's destroy method gets called.
+The error is something like:
+"PG::ForeignKeyViolation: ERROR:  update or delete on table "users" violates foreign key constraint..."
+
+The foreign keys should have ON DELETE CASCADE option.
+To fix this, create a migration.
+```bash
+% rails g migration UpdateForeignKeyConstraint
+```
+```ruby
+class UpdateForeignKeyConstraint < ActiveRecord::Migration[7.0]
+  def change
+    remove_foreign_key :posts, :users
+    add_foreign_key :posts, :users, on_delete: :cascade
+
+    remove_foreign_key :comments, :users
+    add_foreign_key :comments, :users, on_delete: :cascade
+
+    remove_foreign_key :comments, :posts
+    add_foreign_key :comments, :posts, on_delete: :cascade
+  end
+end
+```
+```bash
+% rails db:migrate
+```
+
+
 ### Create Model Specs
 
 #### generate specs
