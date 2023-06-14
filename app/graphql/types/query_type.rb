@@ -6,9 +6,13 @@ module Types
 
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
-    field :public_profile, resolver: Resolvers::PublicProfileResolver
-    field :post_list, resolver: Resolvers::PostListResolver
-    field :post, resolver: Resolvers::PostResolver
-    field :comment_list, resolver: Resolvers::CommentListResolver
+    field :public_profile_list, [PublicProfileType], resolver: Resolvers::PublicProfileListResolver
+    field :post_list, [PostListType], resolver: Resolvers::PostListResolver
+    field :post, PostType, resolver: Resolvers::PostResolver do
+      argument :id, ID, required: true
+    end
+    field :comment_list, [CommentType], resolver: Resolvers::CommentListResolver do
+      argument :post_id, ID, required: true
+    end
   end
 end
