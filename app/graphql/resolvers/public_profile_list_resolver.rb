@@ -3,11 +3,10 @@ module Resolvers
     type [Types::PublicProfileType], null: false
 
     def resolve(**kwargs)
-      users = User.select(:id, :username)
-      if users.empty?
-        return GraphQL::ExecutionError.new("Couldn't find any user", extensions: {code: 'ARGUMENT_ERROR'})
-      end
-      users
+      User.select(:id, :username)
+    rescue ActiveRecord::ActiveRecordError => e
+      # possible pagination error handling -- will be added later
+      raise GraphQL::ExecutionError.new(e.message, extensions: {code: 'ARGUMENT_ERROR'})
     rescue => e
       raise GraphQL::ExecutionError.new(e.message, extensions: {code: 'INTERNAL_SERVER_ERROR'})
     end

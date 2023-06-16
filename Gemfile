@@ -48,6 +48,7 @@ gem "bootsnap", require: false
 group :test do
   gem "shoulda-matchers"
   gem "database_cleaner-active_record"
+  gem "rspec-graphql_matchers"
 end
 
 group :development, :test do
@@ -56,6 +57,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "faker"
   gem "factory_bot_rails"
+  gem "pry"
 end
 
 group :development do
