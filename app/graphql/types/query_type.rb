@@ -14,5 +14,6 @@ module Types
     field :comment_list, [CommentType], resolver: Resolvers::CommentListResolver do
       argument :post_id, ID, required: true
     end
+    field :me, UserType, resolver: Resolvers::MeResolver
   end
 end
