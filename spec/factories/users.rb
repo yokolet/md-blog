@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    provider { 'twitter' }
+    provider { User.providers[:twitter] }
     uid { Faker::Number.number(digits: 16).to_s }
     username { Faker::Games::Pokemon.name }
     access_token { Faker::Alphanumeric.alphanumeric(number: 32) }

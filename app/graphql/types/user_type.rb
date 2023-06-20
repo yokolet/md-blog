@@ -3,7 +3,7 @@
 module Types
   class UserType < Types::BaseObject
     field :id, ID, null: false
-    field :provider, Integer, null: false
+    field :provider, String, null: false
     field :uid, String, null: false
     field :username, String, null: false
     field :email, String
