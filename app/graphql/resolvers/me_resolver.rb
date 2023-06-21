@@ -7,10 +7,12 @@ module Resolvers
       if user
         user
       else
-        return GraphQL::ExecutionError.new('Login required', extensions: {code: 'AUTHENTICATION_ERROR'})
+        raise GraphQL::ExecutionError.new('Login required', extensions: {code: 'AUTHENTICATION_ERROR'})
       end
     rescue => e
-      raise GraphQL::ExecutionError.new(e.message, extensions: {code: 'INTERNAL_SERVER_ERROR'})
+      raise GraphQL::ExecutionError.new(
+        e.message,
+        extensions: {code: (e.respond_to?(:extensions) && e.extensions[:code]) || 'INTERNAL_SERVER_ERROR'})
     end
   end
 end

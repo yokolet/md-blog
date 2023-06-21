@@ -105,6 +105,36 @@ The graphql generator sees model definitions and generates types to meet each mo
   
   {"pid": 12}
   ```
+- Me query -- signed-in user's info
+  ```graphql
+  query {
+    me {
+      id
+      provider
+      uid
+      username
+      email
+      accessToken
+      expiry
+    }
+  }
+  ```
+
+#### Define Mutations
+[Note] User signup/login are done by OAuth 2 PKCE.
+From the mechanism of OAuth 2 PKCE, this part is implemented in REST-ish API.
+
+Mutations are:
+- signed-in user can create a post
+- signed-in user can write a comment on someone else's (including own) post
+
+Below command creates a mutation template.
+```bash
+% rails g graphql:mutation_create post
+% rails g graphql:mutation_create comment
+```
+
+
 
 
 

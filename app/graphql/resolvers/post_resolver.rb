@@ -9,10 +9,12 @@ module Resolvers
       if post
         post
       else
-        return GraphQL::ExecutionError.new("Couldn't find a post id = #{id}", extensions: {code: 'ARGUMENT_ERROR'})
+        raise GraphQL::ExecutionError.new("Couldn't find a post id = #{id}", extensions: {code: 'ARGUMENT_ERROR'})
       end
     rescue => e
-      raise GraphQL::ExecutionError.new(e.message, extensions: {code: 'INTERNAL_SERVER_ERROR'})
+      raise GraphQL::ExecutionError.new(
+        e.message,
+        extensions: {code: (e.respond_to?(:extensions) && e.extensions[:code]) || 'INTERNAL_SERVER_ERROR'})
     end
   end
 end
