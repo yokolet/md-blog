@@ -135,8 +135,46 @@ Below commands creates a mutation template.
 ```
 
 
+#### Mutation Examples
+- Post mutation -- signed-in user can create a post - user_id is provided from context
+  ```graphql
+  mutation post($title: String!, $content: String!) {
+    postCreate(input: {
+      title: $title,
+      content: $content
+    }) {
+      post {
+        id
+        title
+        content
+        userId
+        createdAt
+        updatedAt
+        username
+      }
+    }
+  }
+  ```
 
-
+- Comment mutation -- signed-in user can create a post - user_id is provided from context
+  ```graphql
+  mutation comment($pid: ID!, $body: String!) {
+    commentCreate(input: {
+      postId: $pid,
+      body: $body
+    }) {
+      comment {
+        id
+        body
+        userId
+        postId
+        createdAt
+        updatedAt
+        username
+      }
+    }
+  }
+  ```
 
 ### References
 - [GraphQL error handling with graphql-ruby](https://medium.com/@takewakamma/graphql-error-handling-with-graphql-ruby-653aa2a129f6)
