@@ -176,6 +176,36 @@ Below commands creates a mutation template.
   }
   ```
 
+#### Request Specs
+
+For an authenticated user, the Authorization header should present.
+The value is an encoded JWT token.
+Add jwt_secret to Rails' credentials file.
+```bash
+% EDITOR=vim rails credentials:edit
+```
+
+```
+jwt_secret: YOUR-JWT-SECRET-HERE
+```
+
+To generate a random JWT secret, below works.
+```bash
+% node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+Add JWT gem.
+```bash
+% bundle add jwt
+```
+
+
+
 ### References
+- [Screencast: Testing GraphQL with Rails and RSpec](https://dev.to/phawk/screencast-testing-graphql-with-rails-and-rspec-303m)
 - [GraphQL error handling with graphql-ruby](https://medium.com/@takewakamma/graphql-error-handling-with-graphql-ruby-653aa2a129f6)
-- 
+- [Testing GraphQL-Ruby Mutations With RSpec](https://dev.to/rjrobinson/testing-graphql-ruby-mutations-with-rspec-3ngc)
+- [GraphQL Ruby Integration Tests](https://graphql-ruby.org/testing/integration_tests)
+- [Testing GraphQL Mutations In Ruby On Rails With RSpec](https://selleo.com/blog/testing-graphql-mutations-in-ruby-on-rails-with-rspec)
+- [How I Test GraphQL in Rails With RSpec](https://jamesnewton.com/blog/how-i-test-graphql-in-rails-with-rspec)
+- [Getting Started with Hanami and GraphQL](https://lucaguidi.com/2023/02/06/getting-started-with-hanami-and-graphql/)

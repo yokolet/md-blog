@@ -26,7 +26,7 @@ class GraphqlController < ApplicationController
     if encoded_token
       payload = decodeSignedJwtToken(encoded_token).first
       user = User.where(provider: payload["provider"], uid: payload["uid"]).first
-      validateAccessToken(payload, user) ? user : nil
+      return validateAccessToken(payload, user) ? user : nil
     end
     nil
   end
@@ -46,7 +46,7 @@ class GraphqlController < ApplicationController
   end
 
   def validateAccessToken(payload, user)
-    payload["access_token"] == user&.access_token && DateTime.now < user.expiry
+    payload["access_token"] == user&.access_token && DateTime.now.utc.to_f < user.expiry.to_f
   end
 
   # Handle variables in form data, JSON body, or a blank value
