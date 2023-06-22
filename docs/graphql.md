@@ -78,7 +78,7 @@ The graphql generator sees model definitions and generates types to meet each mo
   ```
 - Post List
   ```graphql
-  query postLlist {
+  query postList {
     postList {
       id
       title
