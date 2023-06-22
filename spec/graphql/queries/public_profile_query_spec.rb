@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "public profile list" do
+RSpec.describe "public profile list", type: :graphql do
   context "query" do
     subject(:result) do
       MdBlogSchema.execute(query)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Types::CommentType do
+RSpec.describe Types::CommentType, type: :graphql do
   subject { described_class }
 
   it { is_expected.to have_field(:id).of_type('ID!') }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "post create" do
+RSpec.describe "post create", type: :graphql do
   context "mutation" do
     it "should raise exception without authenticated user" do
       context = {

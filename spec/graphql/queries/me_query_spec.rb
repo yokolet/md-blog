@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "me query" do
+RSpec.describe "me query", type: :graphql do
   context "query" do
     it "should show user info with successful login" do
       user = create(:user)

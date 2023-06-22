@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "post list" do
+RSpec.describe "post list", type: :graphql do
   context "query with no post" do
     it "should return empty array without any post" do
       result = MdBlogSchema.execute(query)

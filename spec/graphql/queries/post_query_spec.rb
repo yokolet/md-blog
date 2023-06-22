@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "post" do
+RSpec.describe "post", type: :graphql do
   context "query with no post" do
     it "should return error without any post" do
       result = MdBlogSchema.execute(query, variables: { pid: 0 })
