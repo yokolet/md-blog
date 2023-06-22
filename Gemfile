@@ -74,3 +74,5 @@ end
 gem "graphql", "~> 2.0"
 
 gem "jwt", "~> 2.7"
+
+gem "faraday", "~> 2.7"
