@@ -151,11 +151,11 @@ Unless, the factory_bot generator creates under test, not spec directory.
 % bundle exec rspec
 ```
 
-- References
-  - [The Rails Command Line](https://guides.rubyonrails.org/command_line.html)
-  - [Active Record Migrations](https://guides.rubyonrails.org/active_record_migrations.html)
-  - [Rails Generator Cheatsheet](https://dev.to/alicannklc/rails-generator-cheatsheet-1dfn)
-  - [Don't forget: Automatically remove join records on has_many :through associations](https://makandracards.com/makandra/32175-don-t-forget-automatically-remove-join-records-on-has_many-through-associations)
-  - [Factory Bot cheatsheet](https://devhints.io/factory_bot)
-  - [Shoulda Matchers](https://matchers.shoulda.io/)
-  - [How to Test Rails Models with RSpec](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
+### References
+- [The Rails Command Line](https://guides.rubyonrails.org/command_line.html)
+- [Active Record Migrations](https://guides.rubyonrails.org/active_record_migrations.html)
+- [Rails Generator Cheatsheet](https://dev.to/alicannklc/rails-generator-cheatsheet-1dfn)
+- [Don't forget: Automatically remove join records on has_many :through associations](https://makandracards.com/makandra/32175-don-t-forget-automatically-remove-join-records-on-has_many-through-associations)
+- [Factory Bot cheatsheet](https://devhints.io/factory_bot)
+- [Shoulda Matchers](https://matchers.shoulda.io/)
+- [How to Test Rails Models with RSpec](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
