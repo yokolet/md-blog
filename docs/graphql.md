@@ -11,7 +11,7 @@ Edit Gemfile and add graphql gem.
 gem "graphql"
 ```
 ```bash
-% bundle add graphql
+% bundle install
 % rails g graphql:install
 ```
 
@@ -22,11 +22,14 @@ Delete GraphiQL.
 Edit Gemfile and remove the line, `gem "graphiql-rails", group: :development`.
 Edit config/routes.rb delete the code block below:
 ```ruby
+# config/routes.rb
+# Delete below
+
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
 ```
-Then, run
+Then, run below again:
 ```bash
 % bundle install
 ```
@@ -193,12 +196,6 @@ To generate a random JWT secret, below works.
 ```bash
 % node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
-
-Add JWT gem.
-```bash
-% bundle add jwt
-```
-
 
 
 ### References

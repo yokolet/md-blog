@@ -35,6 +35,7 @@ Gems for testing were added:
 group :test do
   gem "shoulda-matchers"
   gem "database_cleaner-active_record"
+  gem "webmock"
 end
 
 group :development, :test do
@@ -134,8 +135,43 @@ require 'support/shoulda-matchers'
 ...
 ```
 
+#### Setup Webmock
+
+Create a file, spec/support/webmock.rb, for a setup.
+```ruby
+# spec/support/webmock.rb
+require 'webmock/rspec'
+WebMock.disable_net_connect!(allow_localhost: true)
+```
+
+Add a require statement in spec/rails_helper.rb.
+```ruby
+...
+require 'support/webmock'
+...
+```
+
+### Some More Gems to Be Installed
+#### JWT gem
+
+The gem is used to create a signed jwt to share a credential between client app and server app.
+
+```bash
+% bundle add jwt
+```
+
+#### Faraday gem
+
+During authentication process, Rails app needs to make an HTTP request to the auth endpoint.
+For that purpose, install faraday gem.
+
+```bash
+% bundle add faraday
+```
+
 ### References
 - [Database Cleaner](https://github.com/DatabaseCleaner/database_cleaner/blob/main/README.markdown)
 - [How To Set Up Rails With RSpec, Capybara, and Database_cleaner](https://betterprogramming.pub/how-to-set-up-rails-with-rspec-capybara-and-database-cleaner-aacb000070ef)
 - [Setting up RSpec and DatabaseCleaner to support multiple databases](https://medium.com/productboard-engineering/setting-up-rspec-and-databasecleaner-to-support-multiple-databases-c42bfe251112)
 - [factory_bot/GETTING_STARTED.md](https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md)
+- [How to Stub External Services in Tests](https://thoughtbot.com/blog/how-to-stub-external-services-in-tests)

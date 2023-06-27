@@ -21,15 +21,6 @@ twitter:
   client_secret: YOUR-TWITTER-APP-CLIENT-SECRET-HERE
 ```
 
-#### Faraday Install
-
-During authentication process, Rails app needs to make an HTTP request to Twitter's auth endpoint.
-For that purpose, install faraday gem.
-
-```bash
-% bundle add faraday
-```
-
 #### Create a model to save state and code_verifier
 Both state and code_verifier are strings of random character.
 Both state and code_verifier should be passed to a client app such as SPA.
@@ -90,17 +81,52 @@ TWITTER_OAUTH2_CONFIG = {
 % rails g controller oauth twitter --skip-template-engine
 ```
 
-#### Request Specs
-
-Install Webmock gem.
+#### Create a Controller to Redirect Back to the Client app
+```bash
+% rails g controller pages home
+```
+Edit config/routes.rb.
 ```ruby
-# Gemfile
-group :test do
-  gem "webmock"
+Rails.application.routes.draw do
+  root 'pages#home'
+  #...
+  #...
+end
+```
+
+#### Request Spec's External Access Mocking
+
+During the OAuth2 PKCE authentication process, the controller makes two HTTP requests to the auth endpoint.
+Those HTTP requests are mocked using WebMock gem.
+
+The payload for the stubbed request is tricky.
+As in blow, code and code_verifier should be nil.
+The client_id is required to be a real one.
+```ruby
+let!(:token_payload) do
+  {
+    "redirect_uri"=>"http://www.localhost:3000/oauth/twitter",
+    "code"=>nil,
+    "grant_type"=>"authorization_code",
+    "client_id"=>Rails.application.credentials.twitter.client_id,
+    "code_verifier"=>nil
+  }
 end
 ```
 
 
-
 ### References
+#### Proof Key for Code Exchange
+- [RFC 7636: Proof Key for Code Exchange](https://oauth.net/2/pkce/)
+- [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://blog.miniorange.com/auth-flow-with-pkce/)
+- [Authorization Code Flow with PKCE (OAuth) in a React application](https://hceris.com/oauth-authorization-code-flow-pkce-for-react/)
+- [Twitter Documentation: Authentication](https://developer.twitter.com/en/docs/authentication/oauth-2-0/authorization-code)
+- [Spotify for Developers: Authorization Code with PKCE Flow](https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow)
+
+#### Implementation
+- [Implementing Authentication with Twitter OAuth 2.0 using Typescript, Express.js and Next.js](https://dev.to/reinforz/implementing-authentication-with-twitter-oauth-20-using-typescript-node-js-express-js-and-next-js-in-a-full-stack-application-353d)
+- [Create a React App with TS, Redux and OAuth 2.0 - Spotify login example](https://medium.com/swlh/create-a-react-app-with-typescript-redux-and-oauth-2-0-7f62d57890df)
+
+#### Testing
 - [How to Stub External Services in Tests](https://thoughtbot.com/blog/how-to-stub-external-services-in-tests)
+- [WebMock](https://github.com/bblimke/webmock)
