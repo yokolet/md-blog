@@ -49,6 +49,7 @@ group :test do
   gem "shoulda-matchers"
   gem "database_cleaner-active_record"
   gem "rspec-graphql_matchers"
+  gem "webmock"
 end
 
 group :development, :test do
